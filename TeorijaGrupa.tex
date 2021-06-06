@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Teorija grupa}
+\author{Pavle  Sekesan, Ognjen Nešković}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\maketitle
+
+\section{Uvod}
+Teorija grupa je podoblast apstrakne algebre, koja se bavi izučavanjem svojstava apstraktnih algebarskih struktura. Kako bismo pojam grupe uveli na što prirodniji način, daćemo primer grupe koja nam je već poznata od ranije. Posmatrajmo skup celih brojeva $\mathbb{Z}$. Nad njima je definisana operacija sabiranja. Primetimo par svojstava ovakve strukture:
+\begin{enumerate}
+    \item Ako saberemo bilo koja dva cela broja, rezultat je tako\dj e ceo broj. Za ovakav skup kažemo da je \textbf{zatvoren} pod sabiranjem
+    \item Postoji broj 0 koji ima svojstvo da bilo koji broj sabran sa nulom daje isti taj broj. Ovakav element skupa nazivamo \textbf{identitet}
+    \item Svaki ceo broj ima svog para sa kojim kada se sabere daje rezultat 0 (za neki broj $a$ ovaj par je $-a$ i naziva se \textbf{inverz} broja $a$)
+    \item Za sabiranje neka tri cela broja nije bitan redlosled izvršavanja operacije, tj. $(a+b)+c=a+(b+c)$. Ovo svojstvo nazivamo \textbf{asocijativnost}
+\end{enumerate}
+
+\section{Pojam grupe}
+Strukture koje poseduju ova 4 svojstva nazivamo \textbf{grupama}. Formalno, grupa je ure\dj eni par $(G, *)$,  gde je $G$ skup i $*$ preslikavanje $* : G \times G \rightarrow G$  za koje važe sledeći aksiomi:
+\begin{enumerate}
+    \item \textbf{Postojanje identiteta} $(\exists e \in G) (\forall x \in G) (x*e=e*x=x)$
+    \item \textbf{Postojanje inverza} $(\forall x \in G) (\exists x' \in G) (x*x'=x'*x=e)$
+    \item \textbf{Asocijativnost} $(\forall x, y, z \in G) (x*(y*z)=(x*y)*z)$
+\end{enumerate}
+
+Zatvorenost operacije se uglavnom ne navodi eksplicitno, jer po definiciji $*$ ima kodomen $G$.
+
+Često se u literaturi umesto $(G, *)$ piše samo $G$, pa ćemo se i mi koristiti ovom notacijom u daljem tekstu. \\
+
+Iz ovih aksioma direktno slede sledeća tvr\dj enja: \\
+
+\textbf{Tvr\dj enje 1:} Identitet je jedinstven
+
+\textit{Dokaz:} Pretpostavimo da postoji više me\dj usobno različitih identiteta. Uzmimo onda dva identiteta $e_1$ i $e_2$. Onda važi $e_1=e_1*e_2=e_2$ pa je $e_1=e_2$ \\
+
+\textbf{Tvr\dj enje 2:} Inverzi su jedinstveni
+
+\textit{Dokaz:} Pretpostavimo da postoji više me\dj usobno različitih inverza elementa $a$. Uzmimo neka dva $b$ i $c$. Onda imamo $b = b*e = b*a*c = e*c = c$ pa je $b = c$
+
+\section{Osnovni pojmovi}
+
+Kroz primere ćemo uvesti definicije osnovnih pojmova u teoriji grupa.
+
+\subsection{Red grupe i elementa}
+
+Posmatrajmo grupu $S_3$ odre\dj enu skupom svih bijekcija skupa $\{1, 2, 3\}$ sa operacijom kompozicije. Ova grupa naziva se \textbf{simetrična grupa} i vrlo je značajna. Elementi ove grupe su sledeća preslikavanja:
+
+$$
+e = \begin{pmatrix}1&2&3\\1&2&3\end{pmatrix}
+s = \begin{pmatrix}1&2&3\\2&1&3\end{pmatrix}
+t = \begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}
+$$
+$$
+u = \begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}
+v = \begin{pmatrix}1&2&3\\2&3&1\end{pmatrix}
+w = \begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}$$
+
+Primetimo da je broj elemenata ove grupe $3! = 6$. Generalno, broj elemenata neke grupe $G$ nazivamo \textbf{red grupe} \\
+
+\textit{Definicija:} Za grupu $G$ kažemo da je reda $k$ ako je kardinalnost skupa $G$ jednaka $k$ i ovo obeležavamo sa $|G|$
+
+Posmatrajmo neke od rezultata kompozicija elemenata iz ove grupe. Imamo na primer da je $st=v$ jer $s(t(\{1, 2, 3\})) = s(\{1, 3, 2\}) = \{2, 3, 1\} = u(\{1, 2, 3\})$. Sve rezultate ove operacije možemo kompaktnije predstaviti u takozvanoj Kejlijevoj tabeli na sledeći način:
+
+$$\vbox{\tabskip0.5em\offinterlineskip
+    \halign{\strut$#$\hfil\ \tabskip1em\vrule&&$#$\hfil\cr
+    ~   & e   & s   & t & u   & v   & w   \cr
+    \noalign{\hrule}\vrule height 12pt width 0pt
+    e   & e   & s   & t   & u   & v   & w   \cr
+    s   & s   & e   & v   & w   & t   & u   \cr
+    t   & t   & u   & e   & s   & w   & v   \cr
+    u   & u   & t   & w   & v   & e   & s   \cr
+    v   & v   & w   & s   & e   & u   & t   \cr
+    w   & w   & v   & u   & t   & s   & e   \cr
+}}$$
+
+Primetimo da svaki element iz ove grupe možemo komponovati odgovarajući broj puta sa samim sobom da bismo dobili identitet. To su redom $e^1 = e$, $s^2 = t^2 = w^2 = e$ i $u^3 = v^3 = e$. Najmanji broj na koji treba "stepenovati" neki element da bi se dobio identitet se naziva \textbf{red elementa}. \\
+
+\textit{Definicija:} \textbf{Red elementa} $a \in G$ predstavlja najmanji broj $n \in \mathbb{N}$ za koji važi da je $a^n = e$ i obeležavamo sa $o(a)$. Ako takvo $n$ ne postoji, kažemo da je $a$ beskonačnog reda. 
+
+\subsection{Podgrupa}
+
+Posmatrajmo grupu odre\dj enu skupom $ G = \{0, 1, 2, 3, 4, 5, 6, 7\}$ sa operacijom sabiranja po modulu $8$. Lako se proverava da ova struktura zaista jeste grupa sa identitetom $0$ i inverzima za svaki element. Primetimo da je podskup skupa $S$ $H = \{0, 2, 4, 6\}$ sa istom operacijom nad tim skupom tako\dj e grupa. Za ovakve grupe kažemo da su \textbf{podgrupe}. \\
+
+\textit{Definicija:} Ako je $(G, *)$ grupa i $H \subset G$ tako da je $(H, *)$ tako\dj e grupa. Onda $(H, *)$ nazivamo \textbf{podgrupa} grupe $(G, *)$ i obeležavamo sa $H \leq G$.\\
+
+Vratimo se na primer grupe $(\mathbb{Z}, +)$. Sa sadašnjim znanjem o grupama možemo dokazati sledeće: \\
+
+\textbf{Tvrdnja:} Sve podgrupe grupe $(\mathbb{Z}, +)$ su oblika $k\mathbb{Z}$ gde je $k \in \mathbb{N}_0$
+
+\textit{Dokaz:} Podelićemo dokaz na delove (1) gde ćemo dokazati da su sve strukture oblika $k\mathbb{Z}$ podgrupe i (2) gde ćemo dokazati da su to jedine podgrupe grupe $\mathbb{Z}$.
+
+\begin{enumerate}
+    \item Struktura $k\mathbb{Z}$
+    \begin{enumerate}
+        \item sadrži identitet 0 ($k \cdot 0 = 0$)
+        \item za svaka dva elementa $a, b \in k\mathbb{Z}$ postoji $a + b \in k\mathbb{Z}$ ($a = kx, b = ky, a+b = kx + ky = k(x + y) \in k\mathbb{Z}$)
+        \item za svaki element $a \in k\mathbb{Z}$ postoji inverz $-a \in k\mathbb{Z}$ ($a = kx, -a = -kx = k(-x) \in k\mathbb{Z}$
+        \item sabiranje nad $k\mathbb{Z}$ je asocijativno
+    \end{enumerate}
+    Sledi da su strukture oblika $k\mathbb{Z}$ grupe
+    
+    \item Grupa $H \leq \mathbb{Z}$ je ili $H = \{0\}$ (što odgovara obliku $k\mathbb{Z}$) ili $H \neq \{0\}$. Ako $H \neq \{0\}$ onda $H$ sadrži element $a \neq 0$, a pošto mora da sadrži i njegov inverz $-a$ onda mora da postoji element u $H$ koji je pozitivan.
+    
+    Razmotrimo najmanje pozitivno $a \in H$ (najmanje ovakvo $a$ sigurno postoji zbog svojstva prirodnih brojeva). Pošto je $a \in H$, indukcijom se lako pokazuje da $a\mathbb{Z} \in H$ zbog zatvorenosti sabiranja. Pretpostavimo da postoji neki element $b \in H$ koji nije oblika $a\mathbb{Z}$. Onda mora da važi da $b = aq+r, 0 < r < a$. Pošto je odatle $r = b + (-aq)$ i $b, a, aq, -aq\in H$ onda mora da je i $r \in H$. Iz pretpostavke da je $a$ najmanji pozitivan broj u $H$ i da je $r$ pozitivan broj manji od $a$ dolazimo do kontradikcije. Dakle, svaka podgrupa grupe $\mathbb{Z}$ mora biti oblika $k\mathbb{Z}$ 
+\end{enumerate}
+
+\subsection{Homomorfizam, izomorfizam i automorfizam}
+
+\end{document}
