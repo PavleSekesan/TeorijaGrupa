@@ -1,0 +1,175 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\title{Teorija grupa}
+\author{Pavle  Sekesan, Ognjen Nešković}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\maketitle
+
+\section{Uvod}
+Teorija grupa je podoblast apstrakne algebre, koja se bavi izučavanjem svojstava apstraktnih algebarskih struktura. Kako bismo pojam grupe uveli na što prirodniji način, daćemo primer grupe koja nam je već poznata od ranije. Posmatrajmo skup celih brojeva $\mathbb{Z}$. Nad njima je definisana operacija sabiranja. Primetimo par svojstava ovakve strukture:
+\begin{enumerate}
+    \item Ako saberemo bilo koja dva cela broja, rezultat je tako\dj e ceo broj. Za ovakav skup kažemo da je \textbf{zatvoren} pod sabiranjem
+    \item Postoji broj 0 koji ima svojstvo da bilo koji broj sabran sa nulom daje isti taj broj. Ovakav element skupa nazivamo \textbf{identitet}
+    \item Svaki ceo broj ima svog para sa kojim kada se sabere daje rezultat 0 (za neki broj $a$ ovaj par je $-a$ i naziva se \textbf{inverz} broja $a$)
+    \item Za sabiranje neka tri cela broja nije bitan redlosled izvršavanja operacije, tj. $(a+b)+c=a+(b+c)$. Ovo svojstvo nazivamo \textbf{asocijativnost}
+\end{enumerate}
+
+\section{Pojam grupe}
+Strukture koje poseduju ova 4 svojstva nazivamo \textbf{grupama}. Formalno, grupa je ure\dj eni par $(G, *)$,  gde je $G$ skup i $*$ preslikavanje $* : G \times G \rightarrow G$  za koje važe sledeći aksiomi:
+\begin{enumerate}
+    \item \textbf{Postojanje identiteta} $(\exists e \in G) (\forall x \in G) (x*e=e*x=x)$
+    \item \textbf{Postojanje inverza} $(\forall x \in G) (\exists x' \in G) (x*x'=x'*x=e)$
+    \item \textbf{Asocijativnost} $(\forall x, y, z \in G) (x*(y*z)=(x*y)*z)$
+\end{enumerate}
+
+Zatvorenost operacije se uglavnom ne navodi eksplicitno, jer po definiciji $*$ ima kodomen $G$.
+
+Često se u literaturi umesto $(G, *)$ piše samo $G$, pa ćemo se i mi koristiti ovom notacijom u daljem tekstu. \\
+
+Iz ovih aksioma direktno slede sledeća tvr\dj enja: \\
+
+\textbf{Tvr\dj enje 1:} Identitet je jedinstven
+
+\textit{Dokaz:} Pretpostavimo da postoji više me\dj usobno različitih identiteta. Uzmimo onda dva identiteta $e_1$ i $e_2$. Onda važi $e_1=e_1*e_2=e_2$ pa je $e_1=e_2$ \\
+
+\textbf{Tvr\dj enje 2:} Inverzi su jedinstveni
+
+\textit{Dokaz:} Pretpostavimo da postoji više me\dj usobno različitih inverza elementa $a$. Uzmimo neka dva $b$ i $c$. Onda imamo $b = b*e = b*a*c = e*c = c$ pa je $b = c$
+
+\section{Osnovni pojmovi}
+
+Kroz primere ćemo uvesti definicije osnovnih pojmova u teoriji grupa.
+
+\subsection{Red grupe i elementa}
+
+Posmatrajmo grupu $S_3$ odre\dj enu skupom svih bijekcija skupa $\{1, 2, 3\}$ sa operacijom kompozicije. Ova grupa naziva se \textbf{simetrična grupa} i vrlo je značajna. Elementi ove grupe su sledeća preslikavanja:
+
+$$
+e = \begin{pmatrix}1&2&3\\1&2&3\end{pmatrix}
+s = \begin{pmatrix}1&2&3\\2&1&3\end{pmatrix}
+t = \begin{pmatrix}1&2&3\\1&3&2\end{pmatrix}
+$$
+$$
+u = \begin{pmatrix}1&2&3\\3&1&2\end{pmatrix}
+v = \begin{pmatrix}1&2&3\\2&3&1\end{pmatrix}
+w = \begin{pmatrix}1&2&3\\3&2&1\end{pmatrix}$$
+
+Primetimo da je broj elemenata ove grupe $3! = 6$. Generalno, broj elemenata neke grupe $G$ nazivamo \textbf{red grupe} \\
+
+\textit{Definicija:} Za grupu $G$ kažemo da je reda $k$ ako je kardinalnost skupa $G$ jednaka $k$ i ovo obeležavamo sa $|G|$
+
+Posmatrajmo neke od rezultata kompozicija elemenata iz ove grupe. Imamo na primer da je $st=v$ jer $s(t(\{1, 2, 3\})) = s(\{1, 3, 2\}) = \{2, 3, 1\} = u(\{1, 2, 3\})$. Sve rezultate ove operacije možemo kompaktnije predstaviti u takozvanoj Kejlijevoj tabeli na sledeći način:
+
+$$\vbox{\tabskip0.5em\offinterlineskip
+    \halign{\strut$#$\hfil\ \tabskip1em\vrule&&$#$\hfil\cr
+    ~   & e   & s   & t & u   & v   & w   \cr
+    \noalign{\hrule}\vrule height 12pt width 0pt
+    e   & e   & s   & t   & u   & v   & w   \cr
+    s   & s   & e   & v   & w   & t   & u   \cr
+    t   & t   & u   & e   & s   & w   & v   \cr
+    u   & u   & t   & w   & v   & e   & s   \cr
+    v   & v   & w   & s   & e   & u   & t   \cr
+    w   & w   & v   & u   & t   & s   & e   \cr
+}}$$
+
+Primetimo da za ovu grupu $s*t \neq t*s$. Međutim postoje grupe gde $(\forall x)(\forall y)(x*y = y*x)$ - takve grupe zovemo \textbf{komutativne} ili \textbf{Abelova} grupa.  
+
+Primetimo da svaki element iz ove grupe možemo komponovati odgovarajući broj puta sa samim sobom da bismo dobili identitet. To su redom $e^1 = e$, $s^2 = t^2 = w^2 = e$ i $u^3 = v^3 = e$. Najmanji broj na koji treba "stepenovati" neki element da bi se dobio identitet se naziva \textbf{red elementa}. \\
+
+\textit{Definicija:} \textbf{Red elementa} $a \in G$ predstavlja najmanji broj $n \in \mathbb{N}$ za koji važi da je $a^n = e$ i obeležavamo sa $o(a)$. Ako takvo $n$ ne postoji, kažemo da je $a$ beskonačnog reda. 
+
+\subsection{Podgrupa}
+
+Posmatrajmo grupu odre\dj enu skupom $ G = \{0, 1, 2, 3, 4, 5, 6, 7\}$ sa operacijom sabiranja po modulu $8$. Lako se proverava da ova struktura zaista jeste grupa sa identitetom $0$ i inverzima za svaki element. Primetimo da je podskup skupa $S$ $H = \{0, 2, 4, 6\}$ sa istom operacijom nad tim skupom tako\dj e grupa. Za ovakve grupe kažemo da su \textbf{podgrupe}. \\
+
+\textit{Definicija:} Ako je $(G, *)$ grupa i $H \subset G$ tako da je $(H, *)$ tako\dj e grupa. Onda $(H, *)$ nazivamo \textbf{podgrupa} grupe $(G, *)$ i obeležavamo sa $H \leq G$.\\
+
+Vratimo se na primer grupe $(\mathbb{Z}, +)$. Sa sadašnjim znanjem o grupama možemo dokazati sledeće: \\
+
+\textbf{Tvrdnja:} Sve podgrupe grupe $(\mathbb{Z}, +)$ su oblika $k\mathbb{Z}$ gde je $k \in \mathbb{N}_0$
+
+\textit{Dokaz:} Podelićemo dokaz na delove (1) gde ćemo dokazati da su sve strukture oblika $k\mathbb{Z}$ podgrupe i (2) gde ćemo dokazati da su to jedine podgrupe grupe $\mathbb{Z}$.
+
+\begin{enumerate}
+    \item Struktura $k\mathbb{Z}$
+    \begin{enumerate}
+        \item sadrži identitet 0 ($k \cdot 0 = 0$)
+        \item za svaka dva elementa $a, b \in k\mathbb{Z}$ postoji $a + b \in k\mathbb{Z}$ ($a = kx, b = ky, a+b = kx + ky = k(x + y) \in k\mathbb{Z}$)
+        \item za svaki element $a \in k\mathbb{Z}$ postoji inverz $-a \in k\mathbb{Z}$ ($a = kx, -a = -kx = k(-x) \in k\mathbb{Z}$
+        \item sabiranje nad $k\mathbb{Z}$ je asocijativno
+    \end{enumerate}
+    Sledi da su strukture oblika $k\mathbb{Z}$ grupe
+    
+    \item Grupa $H \leq \mathbb{Z}$ je ili $H = \{0\}$ (što odgovara obliku $k\mathbb{Z}$) ili $H \neq \{0\}$. Ako $H \neq \{0\}$ onda $H$ sadrži element $a \neq 0$, a pošto mora da sadrži i njegov inverz $-a$ onda mora da postoji element u $H$ koji je pozitivan.
+    
+    Razmotrimo najmanje pozitivno $a \in H$ (najmanje ovakvo $a$ sigurno postoji zbog svojstva prirodnih brojeva). Pošto je $a \in H$, indukcijom se lako pokazuje da $a\mathbb{Z} \in H$ zbog zatvorenosti sabiranja. Pretpostavimo da postoji neki element $b \in H$ koji nije oblika $a\mathbb{Z}$. Onda mora da važi da $b = aq+r, 0 < r < a$. Pošto je odatle $r = b + (-aq)$ i $b, a, aq, -aq\in H$ onda mora da je i $r \in H$. Iz pretpostavke da je $a$ najmanji pozitivan broj u $H$ i da je $r$ pozitivan broj manji od $a$ dolazimo do kontradikcije. Dakle, svaka podgrupa grupe $\mathbb{Z}$ mora biti oblika $k\mathbb{Z}$ 
+\end{enumerate}
+
+\textit{Definicija}: Za svaki podskup $S$ skupa grupe $G$ definišemo \textbf{grupu generisanu skupom $S$}: $\langle S \rangle$ kao najmanju grupu koja sadrži elemente iz $S$.\\
+
+Specijalan slučaj je kada $S$ sadrži samo jedan element. U tom slučaju takvu grupu nazivamo \textbf{cikličnom grupom}. Ciklična grupa $\langle g \rangle$ formirana je pomoću svih celih stepenova elementa $g$, tj. $\langle g \rangle = \{g^k, k \in \mathbf{Z} \}$. Jasno je da je red ciklične grupe jednak redu elementa koji je generiše.
+
+\subsection{Homomorfizam, izomorfizam i automorfizam}
+Posmatrajmo grupe $(\mathbb{Z}, +)$ i $(\{0,1,2\}, \circ))$. Gde je $\circ = (x+y) \mod 3$
+Po pravilima modularnog sabiranja, jasno je da važi $(a+b) \mod 3 = (a \mod 3) \circ (b \mod 3)$. Možemo primetiti da se grupa $(\{0,1,2\}, +)$ može dobiti??? od prve grupe primenom funkcije $f(x) = x \: \mod \: 3$. Pa kažemo da je funkcija, odnosno mapa $f: \: (\mathbb{Z}, +) \rightarrow (\{0,1,2\}, +)$ \textbf{homomorfizam} između ove dve grupe. \\
+
+\textit{Definicija:} Kažemo da je $f:G \rightarrow H$ \textbf{homomorfizam} između grupa $(G,*)$ i $(H,\cdot)$ ako za svaka dva elementa $x$ i $y$ iz $G$ važi $f(x*y) = f(x) \cdot f(y)$ \\
+
+\textbf{Tvrdnja}: Svaki homomorfizam $f$ slika identitet grupe $G$: $e_G$ u identitet grupe $H$:  $e_H$.\\
+\textit{Dokaz}:
+$$f(e_G*e_G) = f(e_G) \cdot f(e_G)$$
+$$f(e_G) = f(e_G) \cdot f(e_G)$$
+$$f(e_G) \cdot f(e_G)^{-1} = (f(e_G)\cdot f(e_G)) \cdot f(e_G)^{-1}$$
+$$f(e_G) \cdot f(e_G)^{-1} = f(e_G) \cdot (f(e_G) \cdot f(e_G)^{-1})$$
+$$e_H = f(e_G) \cdot e_H$$
+$$e_H = f(e_G)$$
+\textbf{Tvrdnja}: Svaki homomorfizam $f$ slika inverze elemenata grupe $(G,*)$ na sledeći način $f(x^{-1}) = f(x)^{-1}$\\
+\textit{Dokaz}:
+$$f(a * a^{-1}) = f(a) \cdot f(a^{-1})$$
+$$e_H = f(a) \cdot f(a^{-1})$$
+$$f(a)^{-1} \cdot e_H = f(a)^{-1} \cdot f(a) \cdot f(a^{-1})$$
+$$f(a)^{-1} = f(a ^{-1})$$\\
+Posmatrajmo ponovo homomorfizam $f: (\mathbb{Z}, +) \rightarrow (\{0,1,2\}, +)$. Primetimo elemente skupa $\mathbb{Z}$ koji se slikaju u element $0$ grupe $(\{0,1,2\}, +)$. To je skup $3\mathbb{Z}$, tj. skup ${0,+-3,+-6,..}$. Ovaj skup nazivamo \textbf{kernel}.\\
+
+\textit{Definicija}: Za homomorfizam $f:G \rightarrow H$ definišemo \textbf{kernel} kao skup elemenata takvih da $x \in G$ i $f(x) = e_H$.\\
+
+\textbf{Tvrdnja}: Kernel za homomorfizam među grupama $(G,*)$ i $(H,\cdot)$, $f:G \rightarrow H$ je podgrupa grupe G.\\
+
+\textit{Dokaz}:
+\begin{enumerate}
+    \item \textbf{Kernel je zatvoren pod $*$}\\
+    Ako su $x,y$ elementi kernela:\\
+    $$f(x*y) = f(x) \cdot f(y)$$
+    $$f(x*y) = e_H \cdot e_H$$
+    $$f(x*y) = e_H$$
+    \item \textbf{Kernel sadrži identitet}\\
+    Sledi iz činjenice da homomorfizam slika identitet grupe G u identitet grupe H. Tj. $f(e_G) = e_H$ pa stoga $e_G$ pripada kernelu.
+    \item \textbf{Kernel sadrži inverze}\\
+    Ako je $x$ element kernela:\\
+    $$f(x*x^{-1}) = f(x) \cdot f(x^{-1})$$
+    $$f(e_G) = e_H \cdot f(x^{-1})$$
+    $$e_H = f(x^{-1})$$
+\end{enumerate}
+
+\textit{Definicija}: Ukoliko je za homomorfizam $f:G \rightarrow H$ funkcija $f$ bijekcija, kažemo da je $f$ \textbf{izomorfizam} među grupama $G$ i $H$.\\
+
+Izomorfizmi su veoma korisni u teoriji grupa jer pokazuju da su dve grupe suštinski iste. Jedino po čemu se razlikuju, barem sa stanovišta teorije grupa su "nazivi" elemenata.\\
+Na primer posmatrajmo grupu $(\mathbb{R}^{+},*)$ - grupa pozitivnih realnih brojeva sa operacijom množenja i grupu $(\mathbb{R},+)$ - grupa realnih brojeva sa operacijom sabiranja.\\
+Jedan izomorfizam između ove dve grupe je  $f(x) = \ln(x)$. Što nije teško pokazati, ukratko:\\
+Funkcija $\ln x: \mathbb{R}^{+} -> \mathbb{R}$ je bijekcija, pa još treba pokazati da je $\ln x$ homomorfizam. Za funkciju $\ln x$ je poznato da važi $\ln(x*y) = \ln x + \ln y$ što je definicija homomorfizma.\\
+Takođe bitno je napomenuti da takođe postoji izomorfizam iz grupe $(\mathbb{R},+)$ u grupu $(\mathbb{R}^{+},*)$ i to je $f(x) = e^x$. Šta više ovo važi i u opštem slučaju, ukoliko postoji izomorfizam među grupama $G$ i $H$, mora postojati i obratno - između $H$ i $G$. Što je direktna posledica toga što je funkcija $f$ bijekcija, a za bijekcije uvek postoji inverzna funkcija $f^{-1}$.\\
+Konkretno ovaj izomorfizam ima i praktične primene - pretvaranje množenja realnih brojeva u sabiranje realnih brojeva je upravo ono što omogućava računanje pomoću lenjira i logaritamskih tablica ili logaritmara.\\
+
+\textit{Definicija}: Ukoliko je za izomorfizam $f:G \rightarrow G$ onda kažemo da je $f$ automorfizam grupe $G$. Tj. funkcija $f$ slika grupu $G$ u samu sebe.
+
+
+\end{document}
